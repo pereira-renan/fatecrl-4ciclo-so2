@@ -192,8 +192,33 @@ else
   echo "Não existe
 fi
 echo
-
 ```
+
+Cut
+```
+abcdef
+
+cut -c3 || extrair a coluna de número X de uma string -> c
+cut -c3-5 || extrair coluna 3 a 5 da string -> cde
+cut -c3- || extrair coluna 3 até o fim -> cdef
+cut -c-3 || extrair todas colunas até a coluna 3 -> abc
+cut -d: -f1 /etc/passwd || extrair apenas o primeiro campo do etc/passwd, verifica o delimitador como :
+date | cut -d: -f1 || retorna a data até o primeiro :
+```
+## Links úteis
+
+GREP
+https://www.hostinger.com.br/tutoriais/comando-grep-linux/
+SED
+http://rberaldo.com.br/o-comando-sed-do-linux/
+https://terminalroot.com.br/2015/07/30-exemplos-do-comando-sed-com-regex.html
+TR
+http://www.bosontreinamentos.com.br/linux/comando-tr-substituir-e-excluir-caracteres-em-arquivos-no-linux/
+UNIQ + SORT
+https://pt.wikibooks.org/wiki/Guia_do_Linux/Iniciante%2BIntermedi%C3%A1rio/Comandos_diversos/uniq
+https://www.dicas-l.com.br/arquivo/o_comando_sort_e_seus_muitos_recursos.php
+PASTE
+https://www.geeksforgeeks.org/paste-command-in-linux-with-examples/
 
 ## Sumário Gabaritos
 
