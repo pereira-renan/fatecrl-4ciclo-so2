@@ -76,6 +76,125 @@ sair () {
 menu <-- script iniciará executando a função menu
 ```
 
+## Comandos mais utilizados
+
+Echo - printa uma string na tela
+```
+echo "mensagem" || printa uma string em tela
+echo -e "string1 \nstring2 \nstring3" || printa, entende \n como quebra e continua na próxima linha
+echo -n "string" || printa e permanece na mesma linha
+```
+Read - lê e atribui um string a uma variável
+```
+read -p "string aqui: " variavel || printa o texto em tela, aceita e salva o input do usuário
+read -sp "digite sua senha: " senha || printa o texto em tela, aceita e salva o input do usuário mas oculta os caracteres digitados
+```
+
+If
+```
+~STRINGS~
+if [ -z nome ]; then || verifica se é nulo
+if [ -n nome ]; then || verifica se NÃO é nulo
+if [ nome = novoNome ]; then || verifica se é igual a
+if [ nome != novoNome]; then || verifica se é diferente de
+if [ nome != novoNome]; then || verifica se é diferente de
+
+~NUMÉRICA~
+if [ altura -lt novaAltura]; then || comparação é menor que tal
+if [ altura -gt novaAltura]; then || comparação é maior que tal
+if [ altura -le novaAltura]; then || comparação é menor ou igual a tal
+if [ altura -ge novaAltura]; then || comparação é maior ou igual a tal
+if [ altura -eq novaAltura]; then || comparação é igual a tal
+if [ altura -ne novaAltura]; then || comparação é diferente de tal
+
+~OPERADORES LÓGICOS~
+~= - NOT
+&& - AND
+|| - OR
+
+if [ -z nome ]; then || condicional de entrada
+elif [ -n nome ]; then || segunda condicional
+fi || encerrar condicional
+```
+
+Cálculo básico atribuído a uma variável
+```
+imc=`echo "scale=2; $peso/($altura * $altura)" | bc | sed ´s/\.//´`
+scale define quantos decimais são utilziados, bc é um comando utilizado para realizar cálculos no interpretador, sed é um editor que funciona em linha de comando, utizado aqui para transformar um real em inteiro
+```
+
+Validação em arquivos
+```
+if [ -b arquivo ]; then || É um dispositivo de bloco
+if [ -c arquivo ]; then || É um dispositivo de caractere
+if [ -d arquivo ]; then || É um diretório
+if [ -e arquivo ]; then || O arquivo existe
+if [ -f arquivo ]; then || É um arquivo normal
+if [ -g arquivo ]; then || O bit SGID está ativado
+if [ -G arquivo ]; then || O grupo do arquivo é o do usuário atual
+if [ -k arquivo ]; then || O sticky-bit está ativado
+if [ -L arquivo ]; then || O arquivo é um link simbólico
+if [ -O arquivo ]; then || O dono do arquivo é o usuário atual
+if [ -p arquivo ]; then || O arquivo é um named pipe
+if [ -r arquivo ]; then || O arquivo tem permissão de leitura
+if [ -s arquivo ]; then || O tamanho do arquivo é maior que zero
+if [ -S arquivo ]; then || O arquivo é um socket
+if [ -t arquivo ]; then || O descritor de arquivos N é um terminal
+if [ -u arquivo ]; then || O bit SUID está ativado
+if [ -w arquivo ]; then || O arquivo tem permissão de escrita
+if [ -x arquivo ]; then || O arquivo tem permissão de execução
+if [ -nt arquivo ]; then || O arquivo é mais recente (NewerThan)
+if [ -ot arquivo ]; then || O arquivo é mais antigo (OlderThan)
+if [ -ef arquivo ]; then || O arquivo é o mesmo (EqualFile)
+```
+
+Exemplo com validação em arquivos
+```
+read -p "Nome do arquivo: " arq; echo
+if [ -z $arq ]; then
+  echo "Arquivo não informado"
+else
+  if [ -e $arq ]; then
+    if [ -r $arq ]; then
+      echo "O arquivo tem permissão"
+    else
+      echo "O arquivo não tem permissão"
+    fi
+  else
+    echo "O arquivo não existe nesse diretorio"
+  fi
+fi
+```
+
+For - laço de repetição
+```
+echo "TABUADA"; echo
+read -p "Digite um número: " valor; echo
+for (( i=1; i<=10; i++ )); do
+  echo "$valor x $i = $[valor*i]"
+done
+echo
+
+read -p "Digite o diretorio" dir; echo
+if [ -d $dir ]; then
+  contador=0;
+  for i in `ls $dir`; do
+    contador=$((contador+1))
+  done
+  if [ "$contador" -eq 0 ]; then
+    echo "Nada"
+  elif [ "$contador" -eq 1 ]; then
+    echo "Apenas 1"
+  else
+    echo "Encontrados $contador arquivos"
+  fi
+else
+  echo "Não existe
+fi
+echo
+
+```
+
 ## Sumário Gabaritos
 
 * [Criação de usuários membros e grupos](https://github.com/pereira-renan/fatecrl-4ciclo-so2/blob/master/Gabaritos/GabLista_07.doc)
@@ -87,6 +206,6 @@ menu <-- script iniciará executando a função menu
 * [Script - input diretório e extensão do arquivo, substituir - por _](https://github.com/pereira-renan/fatecrl-4ciclo-so2/blob/master/Gabaritos/GabLista_13.doc)
 * [Script - input diretório, retornar ls diversos tipos](https://github.com/pereira-renan/fatecrl-4ciclo-so2/blob/master/Gabaritos/GabLista_15.doc)
 
-## Authors
+## Autor
 
 * **Renan Pereira**
